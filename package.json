@@ -7,6 +7,7 @@
     "fs": "^0.0.1-security",
     "promptpay-qr": "^0.4.4",
     "qrcode": "^1.4.1",
+    "qrcode.react": "^0.9.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
