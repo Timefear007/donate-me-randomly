@@ -12,12 +12,17 @@ const useStyles = makeStyles(theme => ({
 
 export default function QrCodeGenerator() {
     const classes = useStyles();
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("");
     const [amount, setAmount] = useState(1.0);
     const [promptpayValue, setPromtpayValue] = useState("test");
 
+    const formatMobileNumber = (num)=>{
+        let formatted = num.replace(/(\d{3})(\d{3})(\d{4})/,'$1-$2-$3');
+        setMobileNumber(formatted);
+    }
+
     const updateQRCode = () => {
-        let payload = generatePayload(phoneNumber, { amount });
+        let payload = generatePayload(mobileNumber, { amount });
         setPromtpayValue(payload);
     }
 
@@ -31,10 +36,10 @@ export default function QrCodeGenerator() {
             className={classes.root}>
                 <Grid container item xs={3}>
                     <TextField
-                        id="Phone number"
-                        label="Phone number"
-                        value={phoneNumber}
-                        onChange={(event) => { setPhoneNumber(event.target.value) }}
+                        id="Mobile Number"
+                        label="Mobile Number"
+                        value={mobileNumber}
+                        onChange={(event) => { formatMobileNumber(event.target.value) }}
                     />
                 </Grid>
                 <Grid container item xs={3}>
