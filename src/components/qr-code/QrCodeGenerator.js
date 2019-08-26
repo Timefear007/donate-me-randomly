@@ -7,6 +7,12 @@ import { makeStyles } from '@material-ui/styles';
 
 const generatePayload = require('promptpay-qr');
 
+const getRandomAmount = (min,max)=>{
+    min= Math.ceil(min);
+    max=Math.floor(max);
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
 const useStyles = makeStyles(theme => ({
 }));
 
@@ -17,18 +23,19 @@ export default function QrCodeGenerator() {
     const [promptpayValue, setPromtpayValue] = useState("test");
 
     const updateQRCode = () => {
+        setAmount(getRandomAmount(1,20000));
         let payload = generatePayload(mobileNumber, { amount });
         setPromtpayValue(payload);
     }
 
     return (
         <form noValidate autoComplete="off">
-            <Grid container
-                spacing={1}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                className={classes.root}>
+            <Grid container 
+            spacing={1} 
+            direction="column"
+            alignItems="center"
+            justify="center"
+            className={classes.root}>
                 <Grid container item xs={3}>
                     <TextField
                         id="Mobile Number"
@@ -51,11 +58,16 @@ export default function QrCodeGenerator() {
                 </Grid>
                 <Grid container item xs={3}>
                     <Button variant="contained" color="primary" onClick={() => { updateQRCode() }}>
+                        Random
+                </Button>
+                </Grid>
+                <Grid container item xs={3}>
+                    <Button variant="contained" color="primary" onClick={() => { updateQRCode() }}>
                         Generate
                 </Button>
                 </Grid>
                 <Grid container item xs={3} >
-                    <QRCode value={promptpayValue} size={200} />
+                    <QRCode value={promptpayValue} size={200}/>
                 </Grid>
             </Grid>
         </form>
