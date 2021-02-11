@@ -15,9 +15,9 @@ export default function SimpleAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" style={{backgroundColor:"red"}}>
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography variant="h1" style={{color:"gold"}}>
             Donate me randomly
           </Typography>
         </Toolbar>
